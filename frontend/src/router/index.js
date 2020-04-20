@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 
   const routes = [
   {
-    path: '/main',
+    path: '/',
     name: 'MainCharts',
     component: MainCharts
   },
