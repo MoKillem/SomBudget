@@ -6,13 +6,13 @@
   >
     <v-toolbar dense>
 
-      <v-toolbar-title>Charts</v-toolbar-title>
+      <v-toolbar-title>SomBudget</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
-     <v-btn text color='purple' small>Signup</v-btn>
-    <v-btn text @click="routePush('/')" color='purple' small >Signin</v-btn>
-    <v-btn text color='purple' small> Tasks</v-btn>
+     <v-btn text color='primary' small>Signup</v-btn>
+    <v-btn text @click="routePush('/')" color='primary' small >General</v-btn>
+    <v-btn text color='primary' small> Tasks</v-btn>
     </v-toolbar>
   </v-card>
 </template>
