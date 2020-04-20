@@ -1,69 +1,63 @@
 <template>
   <div id="app">
-              {{SurplusData}}
-
-      <div class="margined" >
-      <h3 class="display-1">Revenue</h3>
-      <v-card
-      class="mt-5"
-      >
-      <v-card-text>
-        <ejs-chart class ="container" :primaryYAxis='primaryYAxis' :primaryXAxis='primaryXAxis'>
-            <e-series-collection>
-                <e-series :dataSource='RevenueData' type='Line' xName='year' yName='revenue' name='revenue'> </e-series>
-            </e-series-collection>
-        </ejs-chart>
-      </v-card-text>
-      </v-card>
-      </div>
-  
- <div class="margined" >
-      <h3 class="display-1">Expenditure</h3>
-      <v-card
-      class="mt-5"
-      >
-      <v-card-text>
-        <ejs-chart class="container" :primaryYAxis = 'primaryYAxis' :primaryXAxis='primaryXAxis'>
-            <e-series-collection>
-                <e-series :dataSource='ExpenditureData' type='Line' xName='year' yName='expenditure' name='expenditure'> </e-series>
-            </e-series-collection>
-        </ejs-chart>
-      </v-card-text>
-      </v-card>
-    </div> 
+    <div class='headline'>General Budget Analysis</div>
+      <v-row no-gutters>
+      <v-col cols="12" sm="4">
+      <LineGraph title="Revenue" yName="revenue" :primaryYAxis="primaryYAxis" :primaryXaxis='primaryXAxis' :data= 'getRevenue'></LineGraph>
+      </v-col>
+      <v-col cols="12" sm="4">
+      <LineGraph title="Expenditure" yName="expenditure" :primaryYAxis="primaryYAxis" :primaryXaxis="primaryXAxis" :data='getExpenditure'></LineGraph>
+      </v-col>
+      <v-col cols="12" sm="4">
+      <LineGraph title="Surplus" yName="surplus" :primaryYAxis="primaryYAxis" :primaryXaxis="primaryXAxis" :data='getSurplus'></LineGraph>  
+      </v-col>
+      </v-row>
+      
+    <div class='headline'>Revenue Specific Analysis</div>
+    <v-row no-gutters>
+    <v-col cols="12" sm="6">
+    <LineGraph title="Domestic Revenue" yName="revenue" :primaryYAxis="primaryYAxis" :primaryXaxis="primaryXAxis" :data='domrevenue'></LineGraph>  
+    </v-col>
+    <v-col cols="12" sm="6">
+    <LineGraph title="Donar Revenue" yName="revenue" :primaryYAxis="primaryYAxis" :primaryXaxis="primaryXAxis" :data='donrevenue'></LineGraph>  
+    </v-col>
+    </v-row>
   </div>
 </template>
 <script>
-import { ChartPlugin, LineSeries, Category } from "@syncfusion/ej2-vue-charts";
-
+import { ChartPlugin, LineSeries, ColumnSeries, Category } from "@syncfusion/ej2-vue-charts";
+import {mapGetters, mapActions} from 'vuex'
+import LineGraph from '@/components/LineGraph.vue'
 export default {
-     methods:{
-      surplusCheck(revenue,expenditure){
-          arrayMain
-          for(let i = 0; i < revenue.length; i++){
-              let surplus = revenue[i].revenue - expenditure[i].revenue
-              object = {year : revenue[i].year , surplus: surplus}
-              arrayMain.push(object)
-          }
-          this.SurplusData = arrayMain
+    name: "Mainchart",
+    components:{LineGraph},
+     computed: {
+       ...mapGetters([
+      'getRevenue',
+      'getExpenditure',
+      'getSurplus'
+    ])},
+    methods: {
+      ...mapActions(['defSurplus'])
       },
-  },
-  computed: {
-      SurplusDa= this.surplusCheck(RevenueData,ExpenditureData)
+       created () {
+      this.defSurplus()
+    },
+     provide: {
+    chart: [ColumnSeries, Category]
   },
      data() {
     return {
-      ExpenditureData:[
-            { year: '2015', expenditure: 135.5 }, { year: '2016', expenditure: 248.3 },
-            { year: '2017', expenditure: 262.7 }, { year: '2018', expenditure: 268.5 },
-            { year: '2019', expenditure: 390.1 }, { year: '2020', expenditure: 476.2 },
-           
-      ],
-      RevenueData: [
-            { year: '2015', revenue: 141.2 }, { year: '2016', revenue: 248.3 },
-            { year: '2017', revenue: 260.5 }, { year: '2018', revenue: 276.2 },
-            { year: '2019', revenue: 390.1 }, { year: '2020', revenue: 466.2 },
-              ],
+      domrevenue: [
+        { year: '2015', revenue: 141.3 }, { year: '2016', revenue: 139.7 },
+        { year: '2017', revenue: 180.7 }, { year: '2018', revenue: 183.4 },
+        { year: '2019', revenue: 221.3 }, { year: '2020', revenue: 234.4 },
+    ],
+    donrevenue: [
+        { year: '2015', revenue: 26.9 }, { year: '2016', revenue: 108.7 },
+        { year: '2017', revenue: 79.9 }, { year: '2018', revenue: 92.8 },
+        { year: '2019', revenue: 168.8 }, { year: '2020', revenue: 231.8 },
+    ],
         primaryXAxis: {
            valueType: 'Category'
         },
@@ -71,18 +65,8 @@ export default {
             labelFormat: '${value}Mill'
         },
     }
-  },
-     provide: {
-        chart: [LineSeries, Category]
-
- }
+  }
 }
 </script>
 <style scoped>
- .container{
-   height: 350px;
- }
-  .margined{
-    margin:30px;
-  }
 </style>
