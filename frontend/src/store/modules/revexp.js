@@ -2,8 +2,8 @@
 function getObjectDifference(first,second){
     let surplusTot = []
     for(let i = 0; i < first.length; i++){
-        let surplus = first[i].revenue - second[i].expenditure
-        surplusTot[i] = {year: first[i].year, surplus: surplus }
+        let surplus = Math.round(first[i].revenue - second[i].expenditure)
+        surplusTot[i] = {year: first[i].year, surplus: surplus}
     }
     return surplusTot
 }

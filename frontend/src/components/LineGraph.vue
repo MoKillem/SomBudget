@@ -11,6 +11,7 @@
         </ejs-chart>
       </v-card-text>
       </v-card>
+      <v-btn v-if="button === true" color="info mt-4" small @click="routePush(yName1)">See More</v-btn>
       </div>
 </template>
 <script>
@@ -23,10 +24,15 @@ export default {
         yName1: 'revenue'
     }
   },
-    props:['title', 'primaryXAxis', 'yName', 'primaryYAxis', 'data',],
+    props:['title', 'primaryXAxis', 'yName', 'primaryYAxis', 'data','button'],
      provide: {
         chart: [LineSeries, Category]
- }
+ },
+   methods: {
+        routePush(name){
+            this.$router.push(`/${name}`)
+        },
+    }
     
 }
 </script>
