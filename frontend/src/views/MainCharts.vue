@@ -11,10 +11,9 @@
 <script>
 import { ChartPlugin, LineSeries, ColumnSeries, Category } from "@syncfusion/ej2-vue-charts";
 import {mapGetters, mapActions} from 'vuex'
-import LineGraph from '../components/LineGraph.vue'
-import BarGraph from '../components/BarGraph.vue'
-import DoubleBarGraph from '../components/DoubleBarGraph.vue'
-
+import LineGraph from '../components/LineGraph'
+import BarGraph from '../components/BarGraph'
+import DoubleBarGraph from '../components/DoubleBarGraph'
 
 export default {
     name: "Mainchart",
