@@ -23,11 +23,15 @@
       <v-list>
         <v-list-item
         >
-          <v-btn text @click = "routePush('/')">General Budget Analysis</v-btn>
+          <v-btn block text @click = "routePush('/')">General Budget Analysis</v-btn>
         </v-list-item>
 <v-list-item
         >
-          <v-btn text @click = "routePush('/revenue')">Revenue Analysis</v-btn>
+          <v-btn block text @click = "routePush('/revenue')">Revenue Analysis</v-btn>
+        </v-list-item>
+        <v-list-item
+        >
+          <v-btn block text @click = "routePush('/revenue/2020')">2020 Revenue</v-btn>
         </v-list-item>
 <!-- <v-list-item
         >

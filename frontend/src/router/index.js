@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import MainCharts from '../views/MainCharts.vue'
 import Revenue from '../views/revenues/Revenue.vue'
 import Chart from '../views/Chart.vue'
+import Rev2020 from '../views/yearly/2020/Revenue'
 Vue.use(VueRouter)
 
   const routes = [
@@ -17,9 +18,9 @@ Vue.use(VueRouter)
     component: Revenue
   },
   {
-    path: '/chart',
+    path: '/revenue/2020',
     name: 'revenue',
-    component: Chart
+    component: Rev2020
 
   }
 ]

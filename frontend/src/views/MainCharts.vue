@@ -3,7 +3,7 @@
     <div class='headline'>General Budget Analysis</div>
       <v-row no-gutters>
       <v-col cols="12" sm="12">
-      <DoubleBarGraph title="Revenue VS Expenditure" :primaryYAxis='primaryYAxis1' yName="revenue" :data= 'getRevenue' :data1= 'getExpenditure' yName1='expenditure' :button ='true'></DoubleBarGraph>
+      <DoubleBarGraph title="Revenue VS Expenditure (2015 - 2020)" :primaryYAxis='primaryYAxis1' yName="revenue" :data= 'getRevenue' :data1= 'getExpenditure' yName1='expenditure' :button ='true'></DoubleBarGraph>
       </v-col>
       </v-row> 
   </div>
